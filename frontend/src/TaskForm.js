@@ -8,14 +8,26 @@ export default function TaskForm() {
   const [dueDate, setDueDate] = useState('');
   const [priority, setPriority] = useState('Normal');
   const [tag, setTag] = useState('');
+  
   const [msg, setMsg] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/tasks', { title, description: desc, dueDate, priority, tag });
-      setMsg('Task added!');
-      setTitle(''); setDesc(''); setDueDate(''); setPriority('Normal'); setTag('');
+await axios.post('http://localhost:5000/api/tasks', {
+    title,
+    description: desc,
+    dueDate,
+    priority,
+    tag,
+    
+});
+setMsg('Task added!');
+setTitle('');
+setDesc('');
+setDueDate('');
+setPriority('Normal');
+setTag('');
     } catch (error) {
       setMsg('Failed. Check server.');
     }
@@ -36,6 +48,7 @@ export default function TaskForm() {
           <option>Normal</option>
           <option>High</option>
         </select>
+        
         <input placeholder="Tag" value={tag} onChange={e => setTag(e.target.value)}
           className="border rounded p-2" />
         <button type="submit" className="bg-pink-400 hover:bg-pink-500 text-white rounded py-2 mt-2">Save Task</button>
